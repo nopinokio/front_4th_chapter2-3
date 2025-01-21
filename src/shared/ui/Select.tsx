@@ -1,7 +1,7 @@
 import * as React from "react"
 import { forwardRef } from "react"
 import * as SelectPrimitive from "@radix-ui/react-select"
-import { Check, ChevronDown, X } from "lucide-react"
+import { Check, ChevronDown } from "lucide-react"
 
 interface SelectTriggerProps extends SelectPrimitive.SelectTriggerProps {
 	className?: string

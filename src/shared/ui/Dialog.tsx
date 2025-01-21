@@ -1,6 +1,7 @@
 import * as React from "react"
 import { forwardRef } from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
 
 interface DialogContentProps extends DialogPrimitive.DialogContentProps {
 	className?: string
