@@ -1,33 +1,16 @@
 import { useEffect, useState } from "react"
 import { Edit2, MessageSquare, Plus, Search, ThumbsDown, ThumbsUp, Trash2 } from "lucide-react"
 import { useLocation, useNavigate } from "react-router-dom"
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  Input,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-  Textarea,
-} from "../shared/ui"
+import { Button } from "../shared/ui/Button"
+import { Input } from "../shared/ui/Input"
+import { Card, CardContent, CardHeader, CardTitle } from "../shared/ui/Card"
+import { Textarea } from "../shared/ui/Textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../shared/ui/Select"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../shared/ui/Dialog"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../shared/ui/Table"
 
- // interface
- interface PostsData {
+// interface
+interface PostsData {
   posts: Post[]
   total: number
   skip: number
@@ -268,7 +251,7 @@ const PostsManager = () => {
     try {
       const response = await fetch(`/api/comments/post/${postId}`)
       const data: Comment = await response.json()
-      setComments((prev) => ({ 
+      setComments((prev) => ({
         ...prev,
         [data.postId]: [...(prev[data.postId] || []), data],
       }))
@@ -343,7 +326,7 @@ const PostsManager = () => {
       const data = await response.json()
       setComments((prev) => ({
         ...prev,
-        [postId]: prev[postId].map((comment) => (comment.id === data.id ? {...data, likes: comment.likes + 1} : comment)),
+        [postId]: prev[postId].map((comment) => (comment.id === data.id ? { ...data, likes: comment.likes + 1 } : comment)),
       }))
     } catch (error) {
       console.error("댓글 좋아요 오류:", error)
@@ -431,11 +414,10 @@ const PostsManager = () => {
                   {post.tags?.map((tag) => (
                     <span
                       key={tag}
-                      className={`px-1 text-[9px] font-semibold rounded-[4px] cursor-pointer ${
-                        selectedTag === tag
-                          ? "text-white bg-blue-500 hover:bg-blue-600"
-                          : "text-blue-800 bg-blue-100 hover:bg-blue-200"
-                      }`}
+                      className={`px-1 text-[9px] font-semibold rounded-[4px] cursor-pointer ${selectedTag === tag
+                        ? "text-white bg-blue-500 hover:bg-blue-600"
+                        : "text-blue-800 bg-blue-100 hover:bg-blue-200"
+                        }`}
                       onClick={() => {
                         setSelectedTag(tag)
                         updateURL()
